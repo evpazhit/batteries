@@ -1,0 +1,33 @@
+{
+  "$schema": "https://opennoodl.dev/schemas/nodes-v2.json",
+  "componentId": "d5ed65b0-72c3-44ee-b3b6-dbf8bfabcb89",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "280944d4-de9a-4ad9-9ac6-144891b0d93a",
+      "type": "Page",
+      "x": 100,
+      "y": 100,
+      "parameters": {
+        "title": "Home",
+        "urlPath": "home"
+      },
+      "children": [
+        "f3a7affa-4bd8-4542-a796-0f09df87f2ba"
+      ]
+    },
+    {
+      "id": "f3a7affa-4bd8-4542-a796-0f09df87f2ba",
+      "type": "Text",
+      "parameters": {
+        "text": "Hello World!",
+        "fontSize": {
+          "value": 32,
+          "unit": "px"
+        },
+        "textAlignX": "center"
+      },
+      "parent": "280944d4-de9a-4ad9-9ac6-144891b0d93a"
+    }
+  ]
+}

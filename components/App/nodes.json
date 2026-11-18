@@ -1,0 +1,41 @@
+{
+  "$schema": "https://opennoodl.dev/schemas/nodes-v2.json",
+  "componentId": "48b03a30-6059-4b4d-961e-d6e3e98cba93",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "0f4a5d33-9060-404e-85a5-09c21b1b32c1",
+      "type": "Group",
+      "x": 100,
+      "y": 100,
+      "parameters": {
+        "sizeMode": "explicit",
+        "width": {
+          "value": 100,
+          "unit": "%"
+        },
+        "height": {
+          "value": 100,
+          "unit": "%"
+        }
+      },
+      "children": [
+        "aeaef596-07fb-4246-bcac-72aaaeed5612"
+      ]
+    },
+    {
+      "id": "aeaef596-07fb-4246-bcac-72aaaeed5612",
+      "type": "Router",
+      "parameters": {
+        "name": "Main",
+        "pages": {
+          "startPage": "/#__page__/Home",
+          "routes": [
+            "/#__page__/Home"
+          ]
+        }
+      },
+      "parent": "0f4a5d33-9060-404e-85a5-09c21b1b32c1"
+    }
+  ]
+}
