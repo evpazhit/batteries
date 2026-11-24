@@ -1,0 +1,95 @@
+<!doctype html>
+<html itemscope="" itemtype="http://schema.org/WebPage" lang="ru">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>batts</title>
+	<meta name="robots" content="noindex,nofollow">
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link rel="shortcut icon" type="image/x-icon" href="/charging-station-solid-full.svg" />
+	<script src="d3.v7.min.js"></script>
+	<script src="boxes.js"></script>
+	<script src="charge.js"></script>
+	<script src="devices.js"></script>
+	<script src="scripts.js"></script>
+</head>
+<body onload="main()">
+
+	<label>Site: <select name="site" id="sitelist">
+			<option value="0" disabled selected>Select site...</option>
+		</select> + </label>
+	<fieldset id="tabs">
+		<label><input type="radio" name="tabs" value="charge" checked />Charge</label>
+		<label><input type="radio" name="tabs" value="use" />Use</label>
+		<label><input type="radio" name="tabs" value="boxes" />Boxes</label>
+		<label><input type="radio" name="tabs" value="devices" />Devices</label>
+		<label><input type="radio" name="tabs" value="log" />Log</label>
+		<label><input type="radio" name="tabs" value="admin" />Admin</label>
+	</fieldset>
+	
+	<div id="charge" class="hidden">
+		<h2>Charge</h2>
+		<fieldset>
+			<label>AccId: <input type="number" size="4" min="1" name="acc" /></label>
+			<label>Box: <select id="boxsel"></select>
+			</label>
+			<label>Slot: <input type="number" size="4" min="1" name="slot" /></label>
+			<label>Capacity: <input type="number" size="6" min="1" name="cap" /></label>
+			<label>Date: <input type="date" value="2025-07-28" required name="date" /></label>
+			<button type="button">Add</button>
+		</fieldset>
+		<h2>Storage</h2>
+		<table id="storagetable">
+			<thead>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+
+	<div id="use" class="hidden">
+		<h2>Use</h2>
+	</div>
+
+	<div id="boxes" class="hidden">
+		<h2>Boxes</h2>
+		<table>
+			<thead>
+				<tr><th>Box Name</th><th>Slots</th><th>BoxId</th></tr>
+			</thead>
+			<tbody id="boxlist">
+			</tbody>
+		</table>
+		<fieldset id="addbox">
+			<label>Add box: <input type="text" minlength="1" size="20" id="boxname" /></label>
+			<label>Slots: <input type="number" value="4" size="4" maxlength=4 id="slots" /></label>
+			<button>Add box</button>
+		</fieldset>
+		
+	</div>
+
+	<div id="devices" class="hidden">
+		<h2>Device list</h2>
+		<table>
+			<thead>
+				<tr><th>DevId</th><th>Name</th></tr>
+			</thead>
+			<tbody id="devlist">
+			</tbody>
+		</table>
+		<fieldset id="adddev">
+			<label>Device name: <input type="text" minlength="1" size="80" id="devname"/></label>
+			<button>Add device</button>
+		</fieldset>
+	</div>
+
+	<div id="log" class="hidden">
+		<h2>Log</h2>
+	</div>
+
+	<div id="admin" class="hidden">
+		<h2>Admin</h2>
+	</div>
+
+</body>
+</html>
+
