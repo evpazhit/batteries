@@ -36,8 +36,6 @@ function charge()	{
 		var arr = e.target.attributes.id.nodeValue.split('-');
 		var b = arr[1];
 		var s = arr[3];
-		console.log(b,s);
-		console.log(inputs.select('option:checked'));
 		inputs.select('option:checked').property('selected', false);
 		inputs.select(`option[value="${b}"]`).property('selected', true);
 		inputs.select('input[name="slot"]').property('value', s);

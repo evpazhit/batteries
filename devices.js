@@ -20,8 +20,6 @@ function devices()	{
 		var name = to64(d3.select("#devname").property("value"));
 		var slots = d3.select("#devslots").property("value");
 
-		console.log(slots);
-
 		fetch(`api/getcsv.php?f=add_todevices&siteid=${siteid}&slots=${slots}&name=${name}`)
 		.then(res => res.text())
 		.then(res => {
