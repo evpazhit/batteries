@@ -113,11 +113,12 @@ function add_todevices()	{
 	global $db, $rows;
 	$siteid = $_GET['siteid'];
 	$name = $_GET['name'];
+	$slots = $_GET['slots'];
 
 	return (
 		pg_fetch_row(
-			pg_query_params($db, 'insert into devices(siteid,name) values($1,$2)', 
-				array($siteid, $name))
+			pg_query_params($db, 'insert into devices(siteid,name,slots) values($1,$2,$3)', 
+				array($siteid, $name, $slots))
 		)[0]
 	);
 

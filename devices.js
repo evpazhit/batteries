@@ -10,6 +10,7 @@ function devices()	{
 		var d = devlist[k];
 
 		row.append('td').text(d.name);
+		row.append('td').text(d.slots);
 		row.append('td').text(k);
 
 	});
@@ -17,8 +18,11 @@ function devices()	{
 	d3.select("#adddev button").on('click', () => {
 
 		var name = to64(d3.select("#devname").property("value"));
+		var slots = d3.select("#devslots").property("value");
 
-		fetch(`api/getcsv.php?f=add_todevices&siteid=${siteid}&name=${name}`)
+		console.log(slots);
+
+		fetch(`api/getcsv.php?f=add_todevices&siteid=${siteid}&slots=${slots}&name=${name}`)
 		.then(res => res.text())
 		.then(res => {
 

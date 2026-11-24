@@ -7,12 +7,7 @@ function charge()	{
 
 	th.selectAll('*').remove();
 
-	var maxslots = 0;
-
-	if(Object.keys(boxlist).length > 1)
-		maxslots = Object.keys(boxlist).reduce( (a,b) => { console.log('a b', a,b, boxlist[a].slots, boxlist[b].slots); return Math.max( boxlist[a].slots, boxlist[b].slots ); } );
-	else if(Object.keys(boxlist).length === 1)
-		maxslots = boxlist[Object.keys(boxlist)].slots;
+	var maxslots = Math.max(...Object.keys(boxlist).map(s => boxlist[s].slots), 0);
 
 	th.append('th').text('Slot');
 	for(i = 1; i <= maxslots; i++)
