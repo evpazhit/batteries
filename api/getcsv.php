@@ -86,7 +86,7 @@ function add_tostorage()	{
 	return (
 		pg_fetch_row(
 			pg_query_params($db, 'insert into storage(siteid,date,accid,slot,flg,cap,boxid)
-				values($1,$2,$3,$4,1,$5,$6) on conflict(accid) do nothing', array($siteid,$date,$acc,$slot,$cap,$boxid))
+				values($1,$2,$3,$4,1,$5,$6)', array($siteid,$date,$acc,$slot,$cap,$boxid))
 		)[0]
 	);
 

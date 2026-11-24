@@ -24,6 +24,7 @@ function main() {
 			sitelist.append('option').property('value', arr[0]).text(arr[1]);
 
 		});
+		load_data();
 
 	});
 

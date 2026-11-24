@@ -12,4 +12,19 @@ body {
 	display: none;
 }
 
+.free {
+	background-color: #12c91254;
+	text-align: center !important;
+	cursor: pointer;
+}
+
+.flash {
+	background-color: #c9aaaa;
+}
+
+#storagetable td	{
+	width: 80px;
+	text-align: right;
+}
+
 
