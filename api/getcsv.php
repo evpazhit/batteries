@@ -69,7 +69,7 @@ function get_devices()	{
 	global $db, $rows;
 	$siteid = $_GET['siteid'];
 
-	$rows = pg_copy_to($db, "(" . "select devid,name from devices where siteid=$siteid" . ")", chr(9));
+	$rows = pg_copy_to($db, "(" . "select devid,name,slots from devices where siteid=$siteid" . ")", chr(9));
 
 }
 

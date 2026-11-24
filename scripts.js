@@ -29,9 +29,6 @@ function main() {
 
 	sitelist.on('change', () => {
 
-		siteid = + sitelist.select("option:checked").property("value");
-		d3.select("#tabs").classed('hidden', !siteid);
-
 		load_data();
 
 	});
@@ -48,6 +45,12 @@ function main() {
 }
 
 function load_data()	{
+
+	siteid = + d3.select("#sitelist").select("option:checked").property("value");
+
+	boxlist = {};
+	devlist = {};
+	storage.length = 0;
 
 	var proms = [];
 	proms.push(fetch("api/getcsv.php?f=get_storage&siteid=" + siteid)
@@ -107,7 +110,8 @@ function load_data()	{
 
 				var arr = s.split('\t');
 				devlist[arr[0]] = {
-					name: from64(arr[1])
+					name: from64(arr[1]),
+					slots: +arr[2]
 				};
 
 			});
