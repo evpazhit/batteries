@@ -78,7 +78,7 @@ function charge()	{
 		if(accind >= 0)	{
 		
 			var s = storage[accind];
-			error("This istorage cell is busy", s);
+			error("This storage cell is busy", s);
 			return;
 
 		}

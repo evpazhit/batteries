@@ -5,7 +5,7 @@ body {
     width: 960px;
     margin: auto;
     color: #000;
-    background-color: #ccc;
+    background-color: #ddd;
 }
 
 .hidden {
@@ -27,3 +27,17 @@ body {
 	text-align: right;
 }
 
+#usetab td {
+	text-align: right;
+	padding-left: 12px;
+}
+
+.accid {
+	background-color: #ccc;
+	font-weight: bold;
+}
+
+#usetab .delta {
+	background-color: #12c91254;
+	padding-left: 25px;
+}

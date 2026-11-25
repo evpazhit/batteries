@@ -4,6 +4,7 @@ var siteid=0;
 var storage = [];
 var boxlist = {};
 var devlist = {};
+var accbox  = {};	// storage placement
 
 function main() {
 
@@ -76,6 +77,8 @@ function load_data()	{
 				});
 
 			});
+
+			storage.map(s => accbox[s.acc] = s);
 
 		})
 	);
