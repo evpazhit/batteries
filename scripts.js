@@ -126,6 +126,7 @@ function load_data()	{
 		charge();
 		boxes();
 		devices();
+		use();
 
 	});
 
