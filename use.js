@@ -73,7 +73,8 @@ function use()	{
 
 		}
 		actab.sort( (a,b) => a.delta - b.delta );
-		actab.splice( -(accs-1) );
+		if(accs > 1)
+			actab.splice( -(accs-1) );
 
 		function boxtext(tr, b)	{
 
@@ -85,18 +86,28 @@ function use()	{
 		
 		var tb = tab.select('tbody');
 		tb.selectAll('*').remove();
-		actab.forEach(a => {
+		actab.forEach( (a,i) => {
 
 			var tr = tb.append('tr');
 			boxtext(tr, a);
 			a.pack.forEach(p => boxtext(tr,p));
 			tr.append('td').classed('delta', true).text(a.delta);
-			tr.append('td').append('button').text('Put');
+			tr.append('td').append('button').attr('data-id', i).text('Put');
 
 		});
-			
 
-		
+		tb.selectAll('button').on('click', e => {
+			var pack = actab[+e.target.dataset.id];
+			var devid = sel.select("option:checked").property("value");
+			var url = `api/getcsv.php?f=use_acc&siteid=${siteid}&devid=${devid}&accs=${pack.acc}`;
+			pack.pack.forEach(p => url += `,${p.acc}`);
+			console.log('use: ', pack, devid, url);
+			fetch(url).then( () => {
+				console.log('ok?');
+				load_data();
+			});
+
+		});
 
 	}
 	drawtable();

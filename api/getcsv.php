@@ -134,5 +134,30 @@ function add_todevices()	{
 
 }
 
+function use_acc()	{
+
+	global $db;
+
+	$siteid = $_GET['siteid'];
+	$devid = $_GET['devid'];
+	$accs = $_GET['accs'];
+
+	pg_query($db, "begin");
+	foreach(preg_split('/,/', $accs) as $acc)	{
+		
+		pg_query_params($db, 'insert into usage(siteid,date,devid,accid) values($1,CURRENT_DATE,$2,$3)',
+			array($siteid, $devid, $acc));
+		pg_query_params($db, 'insert into log(siteid,date,devid,accid,flg,cap) values($1,CURRENT_DATE,$2,$3::smallint,1,
+			(select cap from storage where siteid=$1 and accid=$3)
+			)',
+			array($siteid, $devid, $acc));
+		pg_query_params($db, 'delete from storage where siteid=$1 and accid=$2',
+			array($siteid, $acc));
+
+	}
+	pg_query($db, "commit");
+
+}
+
 ?>
 
