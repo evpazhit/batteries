@@ -97,6 +97,10 @@ function charge()	{
 
 	});
 
+	var ej=d3.select("#ejected");
+	ej.selectAll('*').remove();
+	ejected.forEach(a => ej.append("span").classed('freeid', true).text(a));
+	ej.on('click', e => inputs.select('input[name="acc"]').property('value', e.target.textContent));
 
 }
 

@@ -92,6 +92,15 @@ function get_usage()	{
 
 }
 
+function get_ejected()	{
+
+	global $db, $rows;
+	$siteid = $_GET['siteid'];
+
+	$rows = pg_copy_to($db, "(" . "select accid from log where siteid=$siteid and flg=3" . ")", chr(9));
+
+}
+
 function add_tostorage()	{
 
 	global $db, $rows;
@@ -106,6 +115,23 @@ function add_tostorage()	{
 	pg_query_params($db, 'insert into storage(siteid,date,accid,slot,flg,cap,boxid)
 		values($1,$2,$3,$4,1,$5,$6)', array($siteid,$date,$acc,$slot,$cap,$boxid));
 	pg_query($db, "delete from usage where siteid=$siteid and accid=$acc");
+	pg_query($db, "delete from log where siteid=$siteid and accid=$acc and flg=3");
+	pg_query_params($db, 'insert into log(siteid,date,devid,accid,flg,cap) 
+		values($1,$2,$3,$4,1,$5)', array($siteid,$date,$devid,$acc,$cap));
+	pg_query($db, "commit");
+
+}
+
+function del_ejected()	{
+
+	global $db;
+	$siteid = $_GET['siteid'];
+	$devid  = $_GET['devid'];
+
+	pg_query($db, "begin");
+	pg_query($db, "insert into log(siteid,date,devid,accid,flg,cap) 
+		select siteid,CURRENT_DATE,devid,accid,3,0 from log where siteid=$siteid and devid=$devid");
+	pg_query($db, "delete from usage where siteid=$siteid and devid=$devid");
 	pg_query($db, "commit");
 
 }
@@ -117,12 +143,8 @@ function add_toboxes()	{
 	$name = $_GET['name'];
 	$slots = $_GET['slots'];
 
-	return (
-		pg_fetch_row(
-			pg_query_params($db, 'insert into boxes(siteid,name,slots) values($1,$2,$3)', 
-				array($siteid, $name, $slots))
-		)[0]
-	);
+	pg_query_params($db, 'insert into boxes(siteid,name,slots) values($1,$2,$3)', 
+		array($siteid, $name, $slots));
 
 }
 
@@ -133,12 +155,8 @@ function add_todevices()	{
 	$name = $_GET['name'];
 	$slots = $_GET['slots'];
 
-	return (
-		pg_fetch_row(
-			pg_query_params($db, 'insert into devices(siteid,name,slots) values($1,$2,$3)', 
-				array($siteid, $name, $slots))
-		)[0]
-	);
+	pg_query_params($db, 'insert into devices(siteid,name,slots) values($1,$2,$3)', 
+		array($siteid, $name, $slots));
 
 }
 

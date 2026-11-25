@@ -46,3 +46,12 @@ body {
 	padding-left: 10px;
 	font-weight: bold;
 }
+
+.freeid	{
+	padding-left: 10px;
+	padding-right: 10px;
+	font-weight: bold;
+	background-color: #12c91254;
+	margin-left: 7px;
+	cursor: pointer;
+}

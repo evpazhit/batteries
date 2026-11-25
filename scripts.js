@@ -6,6 +6,7 @@ var boxlist = {};
 var devlist = {};
 var accbox  = {};	// storage placement
 var usage   = {};
+var ejected = [];	// list of ejected accid
 
 function main() {
 
@@ -55,6 +56,7 @@ function load_data()	{
 	devlist = {};
 	usage   = {};
 	storage.length = 0;
+	ejected.length = 0;
 
 	var proms = [];
 	proms.push(fetch("api/getcsv.php?f=get_storage&siteid=" + siteid)
@@ -142,11 +144,27 @@ function load_data()	{
 				usage[arr[1]].accs.push(arr[2]);
 
 			});
-			console.log(usage);
 
 		})
 	);
 
+	proms.push(fetch("api/getcsv.php?f=get_ejected&siteid=" + siteid)
+		.then(res => res.text())
+		.then(res => {
+
+			res.split('\n').forEach(s => {
+
+				if(s.length === 0)
+					return;
+
+				ejected.push(s);
+
+			});
+
+			console.log(ejected);
+
+		})
+	);
 
 	Promise.all( proms )
 	.then( () => {
