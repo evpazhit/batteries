@@ -103,9 +103,7 @@ function use()	{
 			var devid = sel.select("option:checked").property("value");
 			var url = `api/getcsv.php?f=use_acc&siteid=${siteid}&devid=${devid}&accs=${pack.acc}`;
 			pack.pack.forEach(p => url += `,${p.acc}`);
-			console.log('use: ', pack, devid, url);
 			fetch(url).then( () => {
-				console.log('ok?');
 				load_data();
 			});
 

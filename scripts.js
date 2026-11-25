@@ -161,8 +161,6 @@ function load_data()	{
 
 			});
 
-			console.log(ejected);
-
 		})
 	);
 

@@ -117,7 +117,7 @@ function add_tostorage()	{
 	pg_query($db, "delete from usage where siteid=$siteid and accid=$acc");
 	pg_query($db, "delete from log where siteid=$siteid and accid=$acc and flg=3");
 	pg_query_params($db, 'insert into log(siteid,date,devid,accid,flg,cap) 
-		values($1,$2,$3,$4,1,$5)', array($siteid,$date,$devid,$acc,$cap));
+		values($1,$2,0,$4,1,$5)', array($siteid,$date,$acc,$cap));
 	pg_query($db, "commit");
 
 }

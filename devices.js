@@ -17,7 +17,7 @@ function devices()	{
 			var str = usage[k].date + ":";
 			usage[k].accs.forEach(a => str += `<span class="idlist">${a}</span>`);
 			row.append('td').html(str);
-			row.append('td').append('button').text('Eject');
+			row.append('td').append('button').attr("data-id", k).text('Eject');
 		} else	{
 			row.append('td').html('&nbsp -');
 			row.append('td').html('&nbsp -');
@@ -39,6 +39,10 @@ function devices()	{
 		});
 
 	});
+
+	tab.selectAll('button').on('click', e =>
+		fetch(`api/getcsv.php?f=del_ejected&siteid=${siteid}&devid=${e.target.dataset.id}`)
+		.then( () => load_data()));
 
 }
 
