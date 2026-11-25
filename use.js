@@ -4,21 +4,23 @@ function use()	{
 	var sel = d3.select("#usedev");
 
 	num.selectAll('*').remove();
-	num.append('label')
-		.text('All')
-		.append('input')
+	var l = num.append('label');
+	l.append('input')
 		.attr('type','radio')
 		.attr('name','usenum')
 		.property('value', 0)
 		.property('checked', true);
-	[...new Set(Object.keys(devlist).map(d => devlist[d].slots))].sort().forEach(n => 
-		num.append('label')
-		.text(n)
-		.append('input')
+	l.append('span').text('All');
+	[...new Set(Object.keys(devlist).map(d => devlist[d].slots))].sort().forEach(n => {
+
+		var l = num.append('label');
+		l.append('input')
 		.attr('type','radio')
 		.attr('name', 'usenum')
-		.property('value', n)
-	);		// unique number of slots
+		.property('value', n);
+		l.append('span').text(n);
+	
+	});		// unique number of slots
 
 
 	function dropdown()	{
