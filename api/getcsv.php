@@ -117,7 +117,7 @@ function add_tostorage()	{
 	pg_query($db, "delete from usage where siteid=$siteid and accid=$acc");
 	pg_query($db, "delete from log where siteid=$siteid and accid=$acc and flg=3");
 	pg_query_params($db, 'insert into log(siteid,date,devid,accid,flg,cap) 
-		values($1,$2,0,$4,1,$5)', array($siteid,$date,$acc,$cap));
+		values($1,$2,NULL,$3,1,$4)', array($siteid,$date,$acc,$cap));
 	pg_query($db, "commit");
 
 }
@@ -173,7 +173,7 @@ function use_acc()	{
 		
 		pg_query_params($db, 'insert into usage(siteid,date,devid,accid) values($1,CURRENT_DATE,$2,$3)',
 			array($siteid, $devid, $acc));
-		pg_query_params($db, 'insert into log(siteid,date,devid,accid,flg,cap) values($1,CURRENT_DATE,$2,$3::smallint,1,
+		pg_query_params($db, 'insert into log(siteid,date,devid,accid,flg,cap) values($1,CURRENT_DATE,$2,$3::smallint,2,
 			(select cap from storage where siteid=$1 and accid=$3)
 			)',
 			array($siteid, $devid, $acc));
