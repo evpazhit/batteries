@@ -83,6 +83,15 @@ function get_devices()	{
 
 }
 
+function get_usage()	{
+
+	global $db, $rows;
+	$siteid = $_GET['siteid'];
+
+	$rows = pg_copy_to($db, "(" . "select date,devid,accid from usage where siteid=$siteid" . ")", chr(9));
+
+}
+
 function add_tostorage()	{
 
 	global $db, $rows;
@@ -93,12 +102,11 @@ function add_tostorage()	{
 	$cap  = $_GET['cap'];
 	$date = $_GET['date'];
 
-	return (
-		pg_fetch_row(
-			pg_query_params($db, 'insert into storage(siteid,date,accid,slot,flg,cap,boxid)
-				values($1,$2,$3,$4,1,$5,$6)', array($siteid,$date,$acc,$slot,$cap,$boxid))
-		)[0]
-	);
+	pg_query($db, "begin");
+	pg_query_params($db, 'insert into storage(siteid,date,accid,slot,flg,cap,boxid)
+		values($1,$2,$3,$4,1,$5,$6)', array($siteid,$date,$acc,$slot,$cap,$boxid));
+	pg_query($db, "delete from usage where siteid=$siteid and accid=$acc");
+	pg_query($db, "commit");
 
 }
 

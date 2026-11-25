@@ -5,6 +5,7 @@ var storage = [];
 var boxlist = {};
 var devlist = {};
 var accbox  = {};	// storage placement
+var usage   = {};
 
 function main() {
 
@@ -52,6 +53,7 @@ function load_data()	{
 
 	boxlist = {};
 	devlist = {};
+	usage   = {};
 	storage.length = 0;
 
 	var proms = [];
@@ -122,6 +124,29 @@ function load_data()	{
 
 		})
 	);
+
+	proms.push(fetch("api/getcsv.php?f=get_usage&siteid=" + siteid)
+		.then(res => res.text())
+		.then(res => {
+
+			res.split('\n').forEach(s => {
+
+				if(s.length === 0)
+					return;
+
+				var arr = s.split('\t');
+				usage[arr[1]] ??= {
+					date: arr[0],
+					accs: []
+				};
+				usage[arr[1]].accs.push(arr[2]);
+
+			});
+			console.log(usage);
+
+		})
+	);
+
 
 	Promise.all( proms )
 	.then( () => {

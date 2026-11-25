@@ -11,7 +11,7 @@ function use()	{
 		.property('value', 0)
 		.property('checked', true);
 	l.append('span').text('All');
-	[...new Set(Object.keys(devlist).map(d => devlist[d].slots))].sort().forEach(n => {
+	[...new Set(Object.keys(devlist).filter(d => ! usage[d]).map(d => devlist[d].slots))].sort().forEach(n => {
 
 		var l = num.append('label');
 		l.append('input')
@@ -28,7 +28,7 @@ function use()	{
 		sel.selectAll('*').remove();
 		var filt = +num.select('input:checked').property('value');
 
-		Object.keys(devlist).filter(d => (filt) ? devlist[d].slots === filt : true).forEach(k => {
+		Object.keys(devlist).filter(d => (filt) ? devlist[d].slots === filt : ! usage[d]).forEach(k => {
 
 			var d = devlist[k];
 			sel.append('option').attr('value',k).text(`${d.name} (${d.slots})`);

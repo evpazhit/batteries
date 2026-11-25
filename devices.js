@@ -12,6 +12,16 @@ function devices()	{
 		row.append('td').text(d.name);
 		row.append('td').text(d.slots);
 		row.append('td').text(k);
+		if(usage[k])	{
+
+			var str = usage[k].date + ":";
+			usage[k].accs.forEach(a => str += `<span class="idlist">${a}</span>`);
+			row.append('td').html(str);
+			row.append('td').append('button').text('Eject');
+		} else	{
+			row.append('td').html('&nbsp -');
+			row.append('td').html('&nbsp -');
+		}
 
 	});
 

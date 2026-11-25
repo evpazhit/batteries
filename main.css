@@ -41,3 +41,8 @@ body {
 	background-color: #12c91254;
 	padding-left: 25px;
 }
+
+.idlist	{
+	padding-left: 10px;
+	font-weight: bold;
+}
