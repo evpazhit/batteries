@@ -18,7 +18,7 @@ $db = pg_pconnect("port=5432 host=localhost dbname=accs user=eugene password=Kre
 
 $rows = array();
 
-if( preg_match('/^(get|add|del)/', $_GET['f']) )
+if( preg_match('/^(get|add|del|use)/', $_GET['f']) )
 	$_GET['f']();
 
 echo implode($rows);
@@ -43,6 +43,16 @@ function add_site()		{
 			pg_query_params($db, 'insert into sites(name) values($1) on conflict do nothing', array($_GET['name']))
 		)[0]
 	);
+
+}
+
+function del_box()	{
+
+	global $db;
+	$siteid = $_GET['siteid'];
+	$boxid = $_GET['boxid'];
+
+	pg_query_params($db, 'delete from boxes where siteid=$1 and boxid=$2', array($siteid, $boxid));
 
 }
 

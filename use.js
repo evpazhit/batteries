@@ -47,7 +47,6 @@ function use()	{
 
 		var tab = d3.select("#usetab");
 		var accs = devlist[+sel.select("option:checked").property("value")].slots;		// number of slots in selected device
-		console.log(accs);
 		var th = tab.select('thead');
 		th.selectAll('*').remove();
 
@@ -75,9 +74,6 @@ function use()	{
 		}
 		actab.sort( (a,b) => a.delta - b.delta );
 		actab.splice( -(accs-1) );
-
-		console.log(accbox);
-		console.log(actab);
 
 		function boxtext(tr, b)	{
 
