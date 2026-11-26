@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
-\restrict ULqbVanUNb9gZoRKQzgHoIWcXd5NnEnTAmmqXExCV6M4KFazz5HKR65vSaU2Goq
+\restrict rurODSyvKwPP55IEgU5ZHBN4kj69GgxLV4e3Ib6Zmu0azOf60nUPrcjhEctcjMZ
 
 -- Dumped from database version 18.6 (Ubuntu 18.6-0ubuntu0.26.04.1)
 -- Dumped by pg_dump version 18.6 (Ubuntu 18.6-0ubuntu0.26.04.1)
@@ -85,7 +85,7 @@ ALTER TABLE public.devices OWNER TO eugene;
 
 CREATE TABLE public.log (
     siteid integer,
-    date date,
+    date timestamp without time zone,
     devid integer,
     accid integer,
     flg smallint,
@@ -266,5 +266,5 @@ ALTER TABLE ONLY public.usage
 -- PostgreSQL database dump complete
 --
 
-\unrestrict ULqbVanUNb9gZoRKQzgHoIWcXd5NnEnTAmmqXExCV6M4KFazz5HKR65vSaU2Goq
+\unrestrict rurODSyvKwPP55IEgU5ZHBN4kj69GgxLV4e3Ib6Zmu0azOf60nUPrcjhEctcjMZ
 
